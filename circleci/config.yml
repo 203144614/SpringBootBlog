@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:11-jdk
+
+    steps:
+      - checkout
+
+      - run:
+          name: Build and package
+          command: ./mvnw clean package
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - target/myapp.jar
